@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário do Dr. Alistair Finch - A Obsessão</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* * ESTILIZAÇÃO GERAL DO CORPO
+         * Define um fundo escuro para destacar a página.
+        */
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Kalam', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+            color: #111;
+        }
+
+        /* * A PÁGINA A4
+         * Simula a aparência e dimensões de uma folha de papel A4.
+        */
+        .a4-page {
+            background-color: #f5eeda; /* Tom de papel mais amarelado */
+            width: 794px; /* Largura A4 a 96DPI */
+            height: 1123px; /* Altura A4 a 96DPI */
+            padding: 5rem 4rem 4rem 6rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+            /* Textura de papel sutil + linhas */
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.02) .1em, transparent .1em),
+                repeating-linear-gradient(to bottom, transparent, transparent 23px, #ccc 24px);
+            background-size: 100% 100%, 100% 24px;
+            border-left: 2px solid #ff9a9a; /* Margem mais forte */
+            overflow: hidden;
+        }
+        
+        /* Ajuste para telas menores */
+        @media (max-width: 820px) {
+            body { padding: 1rem; }
+            .a4-page { width: 100%; height: auto; min-height: 1000px; padding: 3rem 2rem; }
+        }
+
+        /* * ESTILO DAS ENTRADAS DO DIÁRIO */
+        .entry { margin-bottom: 2rem; position: relative; z-index: 2; }
+        .entry h2 { font-size: 1em; font-weight: 700; color: #444; margin-bottom: 0.5rem; }
+        .entry p { line-height: 1.5; margin-bottom: 1rem; text-align: justify; }
+
+        /* * DEGRADAÇÃO ACELERADA DA CALIGRAFIA */
+        /* Entrada 29: Rápida e angular */
+        .entry-29 p {
+            font-size: 17px;
+            font-weight: 400;
+            transform: skewX(-3.5deg) rotate(-0.5deg);
+            letter-spacing: -0.2px;
+        }
+
+        /* Entrada 34: Apertada e amontoada */
+        .entry-34 p {
+            font-size: 18px;
+            font-weight: 400;
+            transform: skewX(-4.5deg) rotate(-0.8deg);
+            letter-spacing: -0.4px;
+            word-spacing: -1.5px;
+        }
+        
+        /* Entrada 35: Rabisco de pânico */
+        .entry-35 { text-align: left; }
+        .entry-35 p {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 2.5;
+            color: #222;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        /* Estilização individual para cada linha de texto para criar desorganização */
+        .entry-35 p:nth-of-type(1) {
+            transform: skewX(-10deg) rotate(-2.5deg);
+            margin-left: 5%;
+        }
+        .entry-35 p:nth-of-type(2) {
+             transform: skewX(-8deg) rotate(-1.5deg) translateY(-5px);
+             margin-left: 15%;
+        }
+        .entry-35 p:nth-of-type(3) {
+            transform: skewX(-12deg) rotate(-3deg) translateY(5px);
+            margin-left: 10%;
+            font-size: 24px; /* Última pergunta é maior, mais em pânico */
+        }
+
+
+        .smudged-date {
+            color: #777;
+            text-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+            opacity: 0.8;
+            font-style: italic;
+            font-weight: 700 !important;
+            letter-spacing: -2px;
+            transform: rotate(-4deg) translateY(3px) skewX(-25deg);
+            display: inline-block;
+            filter: blur(0.4px);
+        }
+
+        /* * AS PALAVRAS DA "GLOSA" */
+        .glossa {
+            font-weight: 700;
+            font-style: italic;
+            transform: skewX(-15deg) rotate(-2.5deg);
+            display: inline-block;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+            font-size: 1.1em;
+        }
+        
+        .forceful-underline {
+            text-decoration: underline;
+            text-decoration-color: rgba(0,0,0,0.9);
+            text-decoration-style: wavy;
+            text-decoration-thickness: 2px;
+        }
+
+        /* * SINAIS DE USO E LOUCURA */
+        /* Mancha de café escura e proeminente */
+        .dark-coffee-stain {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 180px;
+            height: 180px;
+            background-color: rgba(60, 40, 20, 0.4);
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(8px);
+            border: 5px solid rgba(60, 40, 20, 0.2);
+        }
+        
+        /* Margens com mandalas caóticas */
+        .margin-notes-obsessive {
+            position: absolute;
+            bottom: 2rem;
+            left: -8rem;
+            width: 500px;
+            font-size: 18px;
+            color: #555;
+            transform: rotate(-40deg);
+            z-index: 3;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .alien-symbol {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        /* Bordas gastas e amassadas */
+        .worn-edge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset -20px -20px 30px rgba(0,0,0,0.2), inset 15px 15px 25px rgba(0,0,0,0.15);
+            pointer-events: none; /* Garante que o texto seja selecionável */
+        }
+        .page-crease {
+            position: absolute;
+            top: 0;
+            left: 40%;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.15), rgba(0,0,0,0));
+            z-index: 1;
+            transform: skewX(-4deg);
+        }
+        
+        /* Novas manchas e sujeira */
+        .ink-smudge {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 200px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(10, 10, 20, 0.08) 0%, rgba(10, 10, 20, 0) 60%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .water-stain {
+            position: absolute;
+            bottom: 25%;
+            left: 10%;
+            width: 250px;
+            height: 80px;
+            background-color: rgba(210, 200, 180, 0.2);
+            border: 1px solid rgba(210, 200, 180, 0.5);
+            border-radius: 30% 70% 50% 50% / 50% 50% 50% 50%;
+            transform: rotate(-20deg);
+            z-index: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- PÁGINA DA OBSESSÃO -->
+    <div class="a4-page">
+        <!-- Elementos Visuais -->
+        <div class="page-crease"></div>
+        <div class="dark-coffee-stain"></div>
+        <div class="worn-edge"></div>
+        <div class="ink-smudge"></div>
+        <div class="water-stain"></div>
+        <div class="margin-notes-obsessive">
+            <span class="alien-symbol">⏣</span> O PADRÃO VÊ TUDO <span class="alien-symbol">۞</span> NÃO ESTOU SOZINHO <span class="alien-symbol">⨂</span>
+        </div>
+
+        <!-- Conteúdo do Diário -->
+        <div class="entry entry-29">
+            <h2>Entrada 29: 28 de Agosto</h2>
+            <p>
+                Consegui. Isolei o fluxo de dados dos cinco segundos do "acidente". A maioria dos programas de análise o interpreta como ruído branco, estática de fundo. Eles são insuficientes. Cegos. Não é ruído. É informação numa densidade que nossos sistemas mal conseguem registrar. É como tentar transcrever o som de uma estrela em colapso usando um gravador de fita.
+            </p>
+            <p>
+                Passei as últimas 72 horas rodando o sinal em um loop, ouvindo-o com fones de ouvido de isolamento. Não há som, mas eu sinto o Valn vibrando no meu crânio. A estrutura. Estou tentando estabelecer uma <span class="glossa">Shavra</span>... com a Athar. Não respondendo, ainda não, mas criando um canal de feedback, deixando-a saber que estou ouvindo. Sinto que estou perto. Só preciso de mais tempo. E mais café.
+            </p>
+        </div>
+        
+        <div class="entry entry-34">
+            <h2>Entrada 34: 05 de Setembro</h2>
+            <p>
+                O tempo perdeu o sentido. Durmo? Acho que não. Fecho os olhos e o Valn está lá, mais nítido do que o mundo real. A tapeçaria de lógica. Helena ligou. Sua voz soava distante, irritada. Falava em prazos, em "entregáveis". Como posso "entregar" a desconstrução da minha própria realidade em um relatório? <span class="forceful-underline">Desliguei na cara dela.</span> Um erro, eu sei. Ela não entenderia.
+            </p>
+            <p>
+                Aconteceu de novo, mas desta vez eu estava acordado. Não foi um vislumbre. Foi uma <span class="glossa">Nym</span> que inundou minha mente por um instante. Não vi com os olhos, mas com o centro do meu ser. Vi a teia, o Valn, se estendendo por tudo. E vi a minha própria <span class="glossa">Kael</span>... como um pequeno nó brilhante e trêmulo nessa tapeçaria infinita. Eu não sou o observador. Sou parte do observado.
+            </p>
+        </div>
+
+        <div class="entry entry-35">
+            <h2 class="smudged-date">Entrada 35: 07 de Setembro</h2>
+            <p>A Shavra. A conexão. Ela funciona nos dois sentidos?</p>
+            <p>Se eu posso vê-los, eles também podem me ver?</p>
+            <p>Eles podem... me ouvir pensar?</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
