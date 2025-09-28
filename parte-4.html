@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário do Dr. Alistair Finch - A Loucura Final</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Rock Salt', cursive; /* Fonte do terror */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+            color: #111;
+        }
+
+        .a4-page {
+            background-color: #c9bda1; /* Papel ainda mais sujo */
+            width: 794px;
+            height: 1123px;
+            padding: 4rem 5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+            position: relative;
+            background-image: 
+                linear-gradient(to top, rgba(80, 60, 40, 0.25), rgba(80, 60, 40, 0.05)),
+                linear-gradient(rgba(0,0,0,0.06) .1em, transparent .1em),
+                repeating-linear-gradient(to bottom, transparent, transparent 23px, #a19882 24px);
+            background-size: 100% 100%, 100% 100%, 100% 24px;
+            border-left: 3px solid #a12a1d; /* Margem de sangue seco */
+            overflow: hidden;
+            transform: rotate(-1.5deg); /* Página levemente torta */
+        }
+        
+        /* Efeitos de dobra e amassado */
+        .a4-page::before, .a4-page::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .a4-page::before {
+            background: 
+                linear-gradient(to bottom right, transparent 49.7%, rgba(0,0,0,0.25) 50%, transparent 50.3%),
+                linear-gradient(30deg, transparent 48%, rgba(0,0,0,0.15) 50%, transparent 52%),
+                linear-gradient(190deg, transparent 47%, rgba(0,0,0,0.15) 50%, transparent 53%);
+        }
+        .a4-page::after {
+             background: 
+                linear-gradient(to top right, transparent 49.7%, rgba(0,0,0,0.25) 50%, transparent 50.3%),
+                linear-gradient(-40deg, transparent 48%, rgba(0,0,0,0.15) 50%, transparent 52%),
+                linear-gradient(310deg, transparent 46%, rgba(0,0,0,0.15) 50%, transparent 54%);
+        }
+
+        @media (max-width: 820px) {
+            body { padding: 1rem; }
+            .a4-page { width: 100%; height: auto; min-height: 1000px; padding: 3rem 2rem; }
+        }
+
+        .content-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* * CALIGRAFIA FINA, TRÊMULA E QUEBRADIÇA */
+        .fragment {
+            position: absolute;
+            font-weight: 400;
+            text-align: left;
+            line-height: 1.2;
+            filter: blur(0.2px);
+        }
+
+        #frag1 { top: 5%; left: 10%; font-size: 17px; transform: rotate(-2deg); width: 600px; }
+        #frag2 { top: 18%; right: 10%; font-size: 14px; transform: rotate(1.5deg); width: 400px; text-align: right; }
+        #frag3 { top: 30%; left: 5%; font-size: 16px; width: 650px; }
+        #frag4 { top: 48%; left: 15%; font-size: 18px; width: 600px; }
+        #frag5 { top: 60%; right: 5%; font-size: 15px; transform: rotate(-1deg); width: 400px; text-align: right;}
+        
+        /* Frase canalizada, estranhamente clara */
+        #channeled {
+            top: 25%;
+            left: 10%;
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            width: 600px;
+        }
+
+        /* Mantra em degeneração */
+        #mantra1, #mantra2, #mantra3 {
+            position: absolute;
+            font-size: 24px;
+        }
+        #mantra1 { top: 70%; left: 20%; transform: rotate(-2deg); }
+        #mantra2 { top: 75%; left: 25%; transform: rotate(1.5deg) skewX(-10deg); filter: blur(0.5px); }
+        #mantra3 { top: 80%; left: 30%; transform: rotate(-3deg) skewX(15deg); filter: blur(0.8px); letter-spacing: -1px; }
+
+        /* Rabiscos Finais */
+        #scribbles {
+            position: absolute;
+            top: 85%;
+            left: 10%;
+            font-size: 22px;
+            line-height: 0.8;
+            color: #332;
+            filter: blur(1px);
+            transform: rotate(2deg);
+            width: 80%;
+            overflow: hidden;
+            word-break: break-all;
+        }
+        
+        /* * SINAIS DE DANO FÍSICO E MENTAL */
+        .torn-effect {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: #1a1a1a;
+            clip-path: polygon(100% 60%, 80% 75%, 65% 60%, 70% 85%, 50% 100%, 100% 100%);
+            z-index: 5;
+        }
+
+        .torn-effect-2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: #1a1a1a;
+            clip-path: polygon(60% 0, 100% 0, 100% 40%, 80% 25%, 70% 50%);
+            z-index: 5;
+        }
+
+        .sweat-stain {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 300px;
+            background-color: rgba(160, 150, 130, 0.4);
+            border: 1px solid rgba(160, 150, 130, 0.7);
+            border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+            filter: blur(5px);
+            z-index: 0;
+        }
+
+        .ink-spill {
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 500px;
+            height: 400px;
+            background-color: rgba(10, 5, 0, 0.35);
+            border-radius: 55% 45% 30% 70% / 60% 30% 70% 40%;
+            transform: rotate(-15deg);
+            filter: blur(10px);
+            z-index: 1;
+        }
+
+        .cigarette-burn {
+            position: absolute;
+            bottom: 25%;
+            left: 10%;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4d3a2a;
+            box-shadow: 0 0 5px 3px #4d3a2a, inset 0 0 3px 2px #000;
+            z-index: 4;
+        }
+
+        .marginalia {
+            position: absolute;
+            font-size: 18px;
+            color: #443;
+            z-index: 3;
+        }
+
+        #margin1 { top: 10%; right: -3rem; transform: rotate(70deg); }
+        #margin2 { bottom: 25%; left: -2rem; transform: rotate(-80deg); }
+
+        .alien-symbol {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.5em;
+            color: #333;
+            margin: 0 5px;
+        }
+
+        .worn-edge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset -50px -50px 60px rgba(0,0,0,0.5), inset 40px 40px 55px rgba(0,0,0,0.45);
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="a4-page">
+        <div class="torn-effect"></div>
+        <div class="torn-effect-2"></div>
+        <div class="worn-edge"></div>
+        <div class="sweat-stain"></div>
+        <div class="ink-spill"></div>
+        <div class="cigarette-burn"></div>
+
+        <div class="content-wrapper">
+            <h2 class="fragment" style="top: 2%; left: 5%; font-size: 1.2em; text-decoration: underline;">Entrada ??</h2>
+            
+            <p class="fragment" id="frag1">O Haelon não existe mais. A Nym... a Nym nunca para. É o Ziv que se quebrou, não o Valn.</p>
+            <p class="fragment" id="frag2">A Verum está aqui. Dentro de mim.</p>
+
+            <p class="fragment" id="channeled">Athar Shavra Khor Valn Kael Ziv.</p>
+
+            <p class="fragment" id="frag3">É tudo o que existe. A Lir da Athar... ela abre. Rasga a Shavra através do Khor. É o Valn que agora é a Kael. Minha Kael. E o fim do Yth... não é Ziv. É o Athar.</p>
+
+            <p class="fragment" id="frag4">O Olho. O Zael.</p>
+            <p class="fragment" id="frag5">Não há Vorn. Não há Mora. Não há tempo. A Akra não é escolha. É o Yth que somos forçados a seguir.</p>
+
+            <div class="fragment" id="mantra1">Kael Akra Ziv.</div>
+            <div class="fragment" id="mantra2">Kael Akra Ziv.</div>
+            <div class="fragment" id="mantra3">Kael Akra Ziv.</div>
+
+            <div id="scribbles">
+                ~~/\\_//~\\_//~~_//~\\~//_//~~//_//~_~/\_~//~/\~~//_//~/\_//~\\_//~~_//~\\~//_//~~//_//~_~/\_~//~/\~
+            </div>
+            
+            <div class="marginalia" id="margin1">۞ Zael ۞</div>
+            <div class="marginalia" id="margin2">PARAR O CANTO</div>
+        </div>
+    </div>
+
+</body>
+</html>
+
